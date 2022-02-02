@@ -6,7 +6,7 @@ export default function Admin_login() {
     const navigate=useNavigate();
     const handleSubmit=(a)=>{
         a.preventDefault();
-        if(document.getElementById("exampleInputEmail1usernameadmin").value===(process.env.ADMIN_ID || "boom") && document.getElementById("exampleInputPassword1adminpassword").value===( process.env.ADMIN_PASS || "1426") ){
+        if(document.getElementById("exampleInputEmail1usernameadmin").value===`${process.env.ADMIN_ID}` && document.getElementById("exampleInputPassword1adminpassword").value===`${process.env.ADMIN_PASS}` ){
             localStorage.setItem("admin","true");
             document.getElementById("boomnotadmin").innerHTML="";
             navigate("/");
@@ -20,6 +20,7 @@ export default function Admin_login() {
   return (<>
   
 <div className='container'>
+  <h2 className="my-3">Only Admin can add edit or delete codes , login to get admin access</h2>
   <form>
   <div className="mb-3 my-3">
     <label htmlFor="exampleInputEmail1" className="form-label">Username</label>

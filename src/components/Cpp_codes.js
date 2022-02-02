@@ -108,7 +108,7 @@ export default function Ds_codes() {
 
  <div className='container'>
 
-   <h1>CPP Codes</h1>
+   <h1 className="my-2 text-danger" style={{"textAlign":"center"}}>Python Codes</h1>
         
 {
   
