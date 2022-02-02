@@ -33,7 +33,7 @@ export default function Home() {
 
 <div className="alert alert-info alert-dismissible fade show mobileShow " role="alert">
    Select the subject , by clicking 3 lines above 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <marquee width="100%" direction="left"  className="my-3 text-danger">
 Have any query or want to contribute code or any thing more to add in this website , mail us at neilcodesboom@gmail.com

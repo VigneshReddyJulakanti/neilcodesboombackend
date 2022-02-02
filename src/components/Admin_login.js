@@ -1,21 +1,17 @@
-import React from 'react';
+import React ,{useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
+import Codecontext from '../context/codes/CodeContext';
 
 export default function Admin_login() {
-
+     const context = useContext(Codecontext);
     const navigate=useNavigate();
     const handleSubmit=(a)=>{
         a.preventDefault();
-        if(document.getElementById("exampleInputEmail1usernameadmin").value===`${process.env.ADMIN_ID}` && document.getElementById("exampleInputPassword1adminpassword").value===`${process.env.ADMIN_PASS}` ){
-            localStorage.setItem("admin","true");
-            document.getElementById("boomnotadmin").innerHTML="";
-            navigate("/");
+        context.admin_post(document.getElementById("exampleInputEmail1usernameadmin").value,document.getElementById("exampleInputPassword1adminpassword").value)
 
-        }else{
-                document.getElementById("boomnotadmin").innerHTML="Boom Boom Boom , You are not an Admin";
+   
+          
         }
-    }
-
     
   return (<>
   

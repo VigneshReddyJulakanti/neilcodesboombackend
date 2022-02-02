@@ -1,7 +1,9 @@
 import {  useState } from "react";
 import Codecontext from "./CodeContext";
 import React  from 'react';
+import { useNavigate } from "react-router-dom";
 const CodeState = (props) => {
+  let navigate = useNavigate();
   // const host = "http://localhost:5000";
   const host="https://neilcodesboombackend.herokuapp.com"
 
@@ -9,6 +11,37 @@ const CodeState = (props) => {
   const [fetched_codecpp, setfetched_codecpp] = useState([]);
 
   //Loading DS Notes
+
+
+  const admin_post=async(user,pass)=>{
+    const response = await fetch(`${host}/admin`, {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      // mode: 'cors', // cors, *no-cors, same-origin
+      // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      // credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      // body data type must match "Content-Type" header
+       body: JSON.stringify({user,pass})
+    });
+
+    let got_response = await response.json();
+    if(got_response.success==="true"){
+
+      localStorage.setItem("admin","true");
+      document.getElementById("boomnotadmin").innerHTML="";
+      navigate("/");
+
+  }else{
+          document.getElementById("boomnotadmin").innerHTML="Boom Boom Boom , You are not an Admin";
+  }
+}
+    
+
+
+  
 
   const LoadNotesDS = async (a) => {
     // a.preventDefault();
@@ -195,7 +228,7 @@ const CodeState = (props) => {
 
 
   return(
-    <Codecontext.Provider value={{fetched_codeds,fetched_codecpp,LoadNotesCPP,LoadNotesDS,host,editCodeDs,editCodecpp,deleteCodecpp,deleteCodeds}}>
+    <Codecontext.Provider value={{fetched_codeds,fetched_codecpp,LoadNotesCPP,LoadNotesDS,host,editCodeDs,editCodecpp,deleteCodecpp,deleteCodeds,admin_post}}>
         {props.children}
     </Codecontext.Provider>
     )
