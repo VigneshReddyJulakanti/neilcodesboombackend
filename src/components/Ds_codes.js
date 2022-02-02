@@ -113,7 +113,7 @@ export default function Ds_codes() {
   fetched_codeds.map((single_code)=>{
     
   
-    return <Code_plate key={single_code.title} single_codes={single_code} code={single_code.hlo} title={single_code.title} description={single_code.description} delete_code={deleteCodeds}  handle_edit={handle_edit}/>
+    return <Code_plate key={single_code.title} single_codes={single_code} code={single_code.hlo} title={single_code.title} description={single_code.description} delete_code={deleteCodeds} _id={single_code._id} handle_edit={handle_edit}/>
   })
 }
 </div>
