@@ -1,7 +1,22 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
+import { useContext ,useEffect} from 'react';
+import Codecontext from '../context/codes/CodeContext';
 export default function Navbar() {
+
+  const context =useContext(Codecontext);
+
+  useEffect(() => {
+   context.Loadnewsec()
+  }, [])
+ 
+  let data=context.fetched_newsec;
+
+  useEffect(()=>{
+    data=context.fetched_newsec;
+  },[context.fetched_newsec])
+
   const navigate =useNavigate()
   const handlelogout=(a)=>{
     a.preventDefault()
@@ -24,12 +39,26 @@ export default function Navbar() {
         <li className="nav-item">
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
         </li>
-        <li className="nav-item">
+
+
+        {/* <li className="nav-item">
           <Link className="nav-link" to="/ds">DS Codes</Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/cpp">Python Codes</Link>
-        </li>
+        </li> */}
+
+{
+  data.map((singledata)=>{
+    return <li key={singledata.newsec} className='nav-item'>
+    
+    <Link className="nav-link" to="/allnotespage" onClick={()=>{
+      context.setpresentState(singledata.newsec);
+    }}>{singledata.newsec}</Link>
+    </li>
+  })
+}
+
         
         
         {localStorage.getItem("admin")?
