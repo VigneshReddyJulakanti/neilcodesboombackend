@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const CodeState = (props) => {
   let navigate = useNavigate();
   // const host = "http://localhost:5000";
-  const host="https://neilcodesboombackend.herokuapp.com"
+  const host="https://sleepy-tie-eel.cyclic.app"
 
   //for present state
 
